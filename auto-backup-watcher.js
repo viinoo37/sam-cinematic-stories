@@ -96,9 +96,17 @@ function autoCommit() {
     
     console.log('✅ Backup voltooid en naar GitHub gepusht!\n');
     
-    // Log naar backup log
+    // Log naar backup log met commit hash
     const logFile = path.join(PROJECT_DIR, '.git-backup.log');
-    const logEntry = `[${timestamp}] Auto-backup voltooid (branch: ${branch})\n`;
+    const commitHash = execSync('git rev-parse --short HEAD', { 
+      encoding: 'utf8',
+      cwd: PROJECT_DIR 
+    }).trim();
+    const commitMsg = execSync('git log -1 --pretty=format:"%s"', { 
+      encoding: 'utf8',
+      cwd: PROJECT_DIR 
+    }).trim();
+    const logEntry = `[${timestamp}] Auto-backup voltooid | Commit: ${commitHash} | ${commitMsg}\n`;
     fs.appendFileSync(logFile, logEntry);
     
     pendingChanges.clear();

@@ -1,0 +1,15 @@
+#!/bin/sh
+# Automatische backup naar GitHub na elke commit
+# Dit script wordt automatisch uitgevoerd na elke git commit in ELK project
+
+# Haal de branch naam op
+BRANCH=$(git rev-parse --abbrev-ref HEAD)
+
+# Push naar GitHub (stil, zonder output tenzij er een fout is)
+git push origin "$BRANCH" 2>&1 | grep -v "Everything up-to-date" || true
+
+# Log de backup (optioneel)
+PROJECT_NAME=$(basename "$(git rev-parse --show-toplevel)")
+TIMESTAMP=$(date '+%Y-%m-%d %H:%M:%S')
+echo "[$TIMESTAMP] Backup voltooid voor project: $PROJECT_NAME (branch: $BRANCH)" >> ~/.git-backup.log 2>/dev/null || true
+
