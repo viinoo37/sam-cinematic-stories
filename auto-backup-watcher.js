@@ -89,12 +89,19 @@ function autoCommit() {
       cwd: PROJECT_DIR 
     }).trim();
     
-    execSync(`git push origin ${branch}`, { 
-      cwd: PROJECT_DIR,
-      stdio: 'inherit' 
-    });
-    
-    console.log('✅ Backup voltooid en naar GitHub gepusht!\n');
+    // Push naar GitHub met error handling
+    try {
+      execSync(`git push origin ${branch}`, { 
+        cwd: PROJECT_DIR,
+        stdio: 'pipe' // Gebruik pipe om errors te kunnen vangen
+      });
+      console.log('✅ Backup voltooid en naar GitHub gepusht!\n');
+    } catch (pushError) {
+      const errorMsg = pushError.stderr?.toString() || pushError.message || 'Onbekende fout';
+      console.error('⚠️  Push naar GitHub mislukt:', errorMsg);
+      console.error('💡 Tip: Controleer je GitHub authenticatie of run: git push origin main\n');
+      // Log de error maar gooi niet de hele backup weg
+    }
     
     // Log naar backup log met commit hash
     const logFile = path.join(PROJECT_DIR, '.git-backup.log');
