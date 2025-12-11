@@ -1059,7 +1059,7 @@ const SamLandingPage = () => {
           {/* Section header - visible on mobile, pinned content on desktop */}
           <div className="md:absolute md:top-8 md:left-6 md:z-20 mb-16 md:mb-0 text-center md:text-left">
             <h2 className="font-display text-5xl sm:text-6xl md:text-5xl lg:text-6xl font-bold text-foreground">
-              Onze <span className="text-gradient-amber">verhalen</span>
+              Onze
             </h2>
           </div>
 
