@@ -9,7 +9,9 @@
     "build": "vite build",
     "build:dev": "vite build --mode development",
     "lint": "eslint .",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "auto-backup": "node auto-backup-watcher.js",
+    "postinstall": "echo '💡 Tip: Auto-backup start automatisch bij het openen van dit project in Cursor'"
   },
   "dependencies": {
     "@hookform/resolvers": "^3.10.0",
