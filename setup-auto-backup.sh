@@ -36,7 +36,20 @@ EOF
 # Maak het script uitvoerbaar
 chmod +x "$HOOKS_DIR/post-commit"
 
+# Configureer GitHub authenticatie als GitHub CLI beschikbaar is
+if command -v gh >/dev/null 2>&1; then
+    if gh auth status >/dev/null 2>&1; then
+        gh auth setup-git >/dev/null 2>&1
+        echo "✅ GitHub authenticatie geconfigureerd"
+    else
+        echo "⚠️  GitHub CLI niet ingelogd. Run: gh auth login"
+    fi
+fi
+
+echo ""
 echo "✅ Automatische backup geconfigureerd voor project: $PROJECT_NAME"
 echo "   Elke keer dat je een commit maakt, wordt deze automatisch naar GitHub gepusht"
 echo "   Backup logs worden opgeslagen in: $PROJECT_DIR/.git-backup.log"
+echo ""
+echo "📝 Test het met: git commit --allow-empty -m 'Test backup'"
 
