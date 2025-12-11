@@ -215,3 +215,4 @@ Alle animaties zijn gesynchroniseerd binnen één GSAP timeline die gekoppeld is
 **Laatste update**: Hero sectie is volledig sticky, logo en tekst animaties werken perfect, achtergrond is volledig zwart, alle componenten zijn aanwezig.
 
 
+

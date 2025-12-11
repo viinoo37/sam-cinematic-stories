@@ -48,3 +48,4 @@ Bij het eerste openen van het project:
 - Alle backups worden gelogd in `.git-backup.log`
 - Stop de backup als je niet aan het werk bent (bespaart resources)
 
+

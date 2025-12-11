@@ -20,3 +20,4 @@ fi
 echo "🚀 Automatische backup gestart..."
 npm run auto-backup
 
+

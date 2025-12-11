@@ -13,3 +13,4 @@ PROJECT_NAME=$(basename "$(git rev-parse --show-toplevel)")
 TIMESTAMP=$(date '+%Y-%m-%d %H:%M:%S')
 echo "[$TIMESTAMP] Backup voltooid voor project: $PROJECT_NAME (branch: $BRANCH)" >> ~/.git-backup.log 2>/dev/null || true
 
+
